@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板</title>
+</head>
+<body>
+{#注意前面一定加上/#}
+    <a href="/Ana/good/">链接</a>
+{#注意下面一定有那个值#}
+    <a href="{% url 'app:good' 1 2%}">链接</a>
+{#    <h1>{{ num }}</h1>#}
+{#      下面的两个方法是一样的,第一个表示的是使用属性,第二个表示的是使用方法#}
+    <h1>{{ stu.sname}}</h1>
+    <h1>{{ stu.getName }}</h1>
+
+{#if语句#}
+    {% if num %}
+        <h1>Ana</h1>
+    {% endif %}
+
+{#for语句显示所有学生的列表#}
+    <ul>
+        {% for stu in stus %}
+
+            <li>
+                {{ forloop.counter }}--{{ stu.sname }}--{{ stu.scontend }}
+            </li>
+            {% empty %}
+                <li>没有学生 </li>
+        {% endfor %}
+    </ul>
+
+{#ifequal语句#}
+
+    {% ifequal 'Ana' 'Ana' %}
+        <h1>good</h1>
+    {% endifequal %}
+
+{#这里表示的就是在字符串显示之前修改#}
+<h1>{{ str|upper }}</h1>
+<h1>{{ str }}</h1>
+<h1>{{  list|join:"#"}}</h1>
+
+{#这里就是如果没有text这个函数,那么显示出来的就是没有#}
+<h1>{{ text|default:'没有' }}</h1>
+
+{#加减乘除#}
+<h1>num={{ num }}</h1>
+<h1>num={{ num|add:10 }}</h1>
+<h1>num={{ num|add:-5 }}</h1>
+{#表示的是num除以1乘上5#}
+
+<h1>num={%  widthratio num 1 5 %}</h1>
+
+{#    表示的是num除以5乘上1#}
+<h1>num={% widthratio num 1 1 %}</h1>
+
+{#此时这里显示的就不是一个h1标签,而直接是一串字符串,但是第二个显示出来的还是字符串,但是第三个就是显示出来html标签#}
+{{ code }}
+{{ code|escape }}
+{{ code|safe }}
+
+{#下面使用的是autoescape标签转义,上面的只能写一个,但是下面的可以写一堆#}
+{% autoescape off %}
+    {{ code }}
+{% endautoescape %}
+</body>
+</html>

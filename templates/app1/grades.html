@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班级信息</title>
+            <link rel="stylesheet" type="text/css" >
+</head>
+<body>
+    <h1>班级信息列表</h1>
+    <ul>
+{#因为可能有很多班级,所以不能写死#}
+        {%for grade in grades %}
+{#            此时每一次循环都会创建一个li#}
+            <li>
+                <a href="{{ grade.id }}">{{ grade.gname }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <div id="box">
+        <p>这是一个新的班级</p>
+
+        <label>
+            <select>
+                <option>北京</option>
+                <option>上海</option>
+                <option>深圳</option>
+
+            </select>
+        </label>
+{#        {% load static %}#}
+{#            <img src="{% static "/Users/zan/Desktop/html/img/1.jpeg" %}" alt="Hi!" />#}
+
+    </div>
+</body>
+</html>
